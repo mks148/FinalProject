@@ -1,0 +1,100 @@
+<% include ../partials/header.ejs %>
+
+<main>
+
+
+<!-- subnavigation -->
+    <header>
+        <nav class="campProfileNav">
+            <ul>
+                <a href="/myclients" class="buttonPrime buttonPrimeHover buttonPrime buttonPrimeHover SubNavIsActive">Profile</a>
+                <a href="myclients/directory" class="buttonPrime buttonPrimeHover">Sign In/Out camper</a>
+                <a href="/price" class="buttonPrime buttonPrimeHover">Payments</a>
+                <a href="#" class="buttonPrime buttonPrimeHover">Register to camp</a>
+            </ul>
+        </nav>
+    </header>
+<!-- subnavigation -->
+
+
+    <section>
+        <h1>Profile</h1>
+
+        <% if (user) { %>
+            <a class="btn buttonPrime buttonPrimeHover addCamperBtn" href="/myclients/add">Add camper</a>
+        <% } %>
+
+        <div class="separatorPortfolio"></div>
+
+        <div class="profileContainer">
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>
+                        <b>Photo: </b>
+                    </th>
+                    <th>
+                        <b>Camper name: </b>
+                    </th>
+                    <th>
+                        <b>Family name: </b>
+                    </th>
+                    <th>
+                        <b>Parents Names: </b>
+                    </th>
+                    <th>
+                        <b>Email: </b>
+                    </th>
+                    <th>
+                        <b>Phone: </b>
+                    </th>
+                    <th>
+                        <b>Notes: </b>
+                    </th>
+                    <th>
+                        <b>Medical Notes: </b>
+                    </th>
+                    <th>
+                        <b>Parent code: </b>
+                    </th>
+                     <% if (user) { %>
+                    <th><b>Manage: </b></th>
+                    <% } %>
+                </tr>
+
+<!-- place for "for loop" -->
+
+            <% for (var i=0; i < lists.length; i++) { %>
+                <tr class="tableRow">
+                    <td>
+                        <img src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p200x200/11667477_1465034010482395_2817761388198272167_n.jpg?oh=a8dc11d686c2be7558ad18d5b414bd42&oe=5992153F" alt="<%= lists[i].campername %> photo" class="camperPhoto flex-item">
+                    </td>
+                    <td><%= lists[i].campername %></td>
+                    <td><%= lists[i].parentname %></td>
+                    <td><%= lists[i].campername2 %></td>
+                    <td><%= lists[i].campername3 %></td>
+                    <td><%= lists[i].phone %></td>
+                    <td><%= lists[i].notes %></td>
+                    <td><%= lists[i].medical %></td>
+                    <td><%= lists[i].code %></td>
+
+                    <% if (user) { %>
+                    <td>
+                        <a href="/myclients/<%= lists[i]._id %>" class="buttonPrime buttonPrimeHover btn">Edit</a>
+                        </br>
+                        </br>
+                        <a href="/myclients/delete/<%= lists[i]._id %>" class="buttonDanger buttonDangerHover btn">Delete</a>
+                    </td>
+                    <% }%>
+                </tr>
+            <% }%>
+
+
+            </table>
+        </div> <!-- class="profileContainer" -->
+
+        <div class="separatorPortfolio"></div>
+    </section>
+
+</main>
+
+<% include ../partials/footer.ejs %>
